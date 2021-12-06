@@ -4,11 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lagou.dao.LessonMapper">
     <!--根据课程id查询课时信息-->
-    <select id="findLessonBYCourseId" resultType="com.lagou.domain.CourseLesson" parameterType="int">
+    <sql id="selectLesson">
         select
             *
         from
             course_lesson
+    </sql>
+    <select id="findLessonBYCourseId" resultType="com.lagou.domain.CourseLesson" parameterType="int">
+        <include refid="selectLesson"/>
         where
             course_id = #{courseId}
         order by
@@ -43,4 +46,51 @@
                 #{status}
             )
     </insert>
+
+    <update id="updateLesson" parameterType="com.lagou.domain.CourseLesson">
+        update
+            course_lesson
+        <trim prefix="set" suffixOverrides=",">
+            <if test="theme != null and theme != ''">
+                theme = #{theme},
+            </if>
+            <if test="duration != null and duration != ''">
+                duration = #{duration},
+            </if>
+            <if test="isFree != null and isFree != ''">
+                is_free = #{isFree},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="theme != null and theme != ''">
+                order_num = #{orderNum},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status}
+            </if>
+        </trim>
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+        </where>
+    </update>
+
+    <!--回显课时信息-->
+    <select id="findLessonById" parameterType="int" resultType="com.lagou.domain.CourseLesson">
+        <include refid="selectLesson"></include>
+        where id = #{id}
+    </select>
+
+    <!--修改课时状态信息-->
+    <update id="updateLessonStatus" parameterType="com.lagou.domain.CourseLesson">
+        update
+            course_lesson
+        set
+            status = #{status},
+            update_time = #{updateTime}
+        where
+            id = #{id}
+    </update>
 </mapper>
