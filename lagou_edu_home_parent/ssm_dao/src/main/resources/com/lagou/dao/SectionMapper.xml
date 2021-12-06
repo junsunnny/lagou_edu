@@ -33,4 +33,29 @@
     <select id="findCourseById" parameterType="int" resultType="com.lagou.domain.Course">
         select id,course_name from course where id = #{id};
     </select>
+
+    <!--保存章节信息-->
+    <insert id="saveSection" parameterType="com.lagou.domain.CourseSection">
+        insert into
+        course_section(
+            course_id,
+            section_name,
+            description,
+            create_time,
+            update_time,
+            is_de,
+            order_num,
+            status
+            )
+        VALUE(
+            #{courseId},
+            #{sectionName},
+            #{description},
+            #{createTime},
+            #{updateTime},
+            #{isDe},
+            #{orderNum},
+            #{status}
+            )
+    </insert>
 </mapper>

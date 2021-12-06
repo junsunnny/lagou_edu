@@ -16,4 +16,10 @@ public interface SectionService {
      * 根据课程id查询课程信息
      */
     public Course findCourseByID(Integer courseId);
+
+    /**
+     * 根据课程id添加章节信息
+     * @param courseSection
+     */
+    public void saveSection(CourseSection courseSection);
 }

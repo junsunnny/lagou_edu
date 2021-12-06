@@ -4,6 +4,7 @@ import com.lagou.dao.SectionMapper;
 import com.lagou.domain.Course;
 import com.lagou.domain.CourseSection;
 import com.lagou.service.SectionService;
+import com.lagou.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,21 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public Course findCourseByID(Integer courseId) {
         return sectionMapper.findCourseById(courseId);
+    }
+
+    /**
+     * 根据课程id添加章节信息
+     *
+     * @param courseSection
+     */
+    @Override
+    public void saveSection(CourseSection courseSection) {
+        // 补全信息
+        courseSection.setCreateTime(DateUtils.getCurrentTime());
+        courseSection.setUpdateTime(DateUtils.getCurrentTime());
+        courseSection.setIsDe(0);
+        // 2.调用业务层方法
+        sectionMapper.saveSection(courseSection);
     }
 
 }

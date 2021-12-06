@@ -72,7 +72,7 @@
                 #{description},
                 #{createTime},
                 #{updateTime}
-                );
+                )
     </insert>
 
     <select id="findCourseAndTeacherById" parameterType="int" resultType="com.lagou.domain.CourseVO">
@@ -165,8 +165,6 @@
         where
             id = #{id}
     </update>
-
-
 
 
 

@@ -5,6 +5,7 @@ import com.lagou.domain.CourseSection;
 import com.lagou.domain.ResponseResult;
 import com.lagou.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,9 +29,25 @@ public class SectionController {
         return new ResponseResult(true, 200, "课程查询成功", courseList);
     }
 
+    /**
+     * 根据课程id回显课程信息
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/findCourseById")
     public ResponseResult findCourseById(Integer courseId){
         Course course = sectionService.findCourseByID(courseId);
         return new ResponseResult(true,200,"查询成功", course);
+    }
+
+    /**
+     * 保存或修改章节信息
+     * @param courseSection
+     * @return
+     */
+    @RequestMapping("/saveOrUpdateSection")
+    public ResponseResult saveOrUpdateSection(@RequestBody CourseSection courseSection) {
+        sectionService.saveSection(courseSection);
+        return new ResponseResult(true,200,"新建成功",null);
     }
 }

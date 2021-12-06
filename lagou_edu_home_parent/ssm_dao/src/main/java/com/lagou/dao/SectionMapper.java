@@ -17,4 +17,10 @@ public interface SectionMapper {
      * 查询课程信息
      */
     public Course findCourseById(Integer id);
+
+    /**
+     * 保存章节信息
+     * @param courseSection
+     */
+    public void saveSection(CourseSection courseSection);
 }
