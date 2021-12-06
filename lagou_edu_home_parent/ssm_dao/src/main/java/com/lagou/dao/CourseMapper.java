@@ -3,7 +3,6 @@ package com.lagou.dao;
 import com.lagou.domain.Course;
 import com.lagou.domain.CourseVO;
 import com.lagou.domain.Teacher;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
