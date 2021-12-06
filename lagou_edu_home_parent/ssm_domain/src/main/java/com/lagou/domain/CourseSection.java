@@ -15,19 +15,9 @@ public class CourseSection {
   private int orderNum;
   private int status;
 
-  // 描述对应的课程信息
-  private Course course;
 
   // 描述对应的章节信息
   private List<CourseLesson> lessonList;
-
-  public Course getCourse() {
-    return course;
-  }
-
-  public void setCourse(Course course) {
-    this.course = course;
-  }
 
   public List<CourseLesson> getLessonList() {
     return lessonList;
