@@ -156,7 +156,7 @@
                 </if>
             </where>
     </update>
-    
+    <!--修改课程状态-->
     <update id="updateCourseStatus" parameterType="com.lagou.domain.Course">
         update
             course
@@ -165,6 +165,10 @@
         where
             id = #{id}
     </update>
+
+    <select id="findCourseById" parameterType="int" resultType="com.lagou.domain.Course">
+        select id,courseName from course where id = #{id};
+    </select>
 
 
 
