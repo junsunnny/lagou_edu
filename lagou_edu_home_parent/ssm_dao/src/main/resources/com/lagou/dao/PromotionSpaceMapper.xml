@@ -38,8 +38,12 @@
 
     <!--回显广告位信息-->
     <select id="findPromotionSpaceById" parameterType="int" resultType="com.lagou.domain.PromotionSpace">
-        <include refid="selectPromotionSpace"></include>
-        where id = #{id}
+        select
+            id,name
+        from
+            promotion_space
+        where
+            id = #{id}
     </select>
 
     <!--修改广告位信息-->
