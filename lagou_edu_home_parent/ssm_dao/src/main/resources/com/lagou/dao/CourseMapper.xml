@@ -161,7 +161,8 @@
         update
             course
         set
-            status = #{status}
+            status = #{status},
+            update_time = #{updateTime}
         where
             id = #{id}
     </update>

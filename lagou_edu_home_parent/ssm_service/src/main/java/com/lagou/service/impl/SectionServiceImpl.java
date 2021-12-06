@@ -63,4 +63,23 @@ public class SectionServiceImpl implements SectionService {
         sectionMapper.updateSection(courseSection);
     }
 
+    /**
+     * 更改章节状态信息
+     *
+     * @param id
+     * @param status
+     */
+    @Override
+    public void updateSectionStatus(Integer id, Integer status) {
+        // 1.进行数据封装
+        CourseSection courseSection = new CourseSection();
+        courseSection.setId(id);
+        courseSection.setStatus(status);
+        courseSection.setUpdateTime(DateUtils.getCurrentTime());
+
+        // 2.调用dao层的方法
+        sectionMapper.updateSectionStatus(courseSection);
+    }
+
+
 }

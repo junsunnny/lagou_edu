@@ -92,12 +92,17 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.updateTeacherByCourseId(teacher);
     }
 
+    /**
+     * 跟新课程状态信息
+     * @param id
+     * @param status
+     */
     @Override
-    public void updateCourseStatusById(int id, int status) throws InvocationTargetException, IllegalAccessException {
+    public void updateCourseStatusById(int id, int status){
         // 对数据进行封装
         Course course = new Course();
         course.setId(id);
-        course.setStatus(id);
+        course.setStatus(status);
         course.setUpdateTime(DateUtils.getCurrentTime());
         // 2.调用数据访问层的方法
         courseMapper.updateCourseStatus(course);

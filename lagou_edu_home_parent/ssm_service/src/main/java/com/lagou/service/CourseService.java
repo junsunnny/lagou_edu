@@ -39,10 +39,9 @@ public interface CourseService {
      * 修改课程状态
      * @param id
      * @param status
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+     *
      */
-    public void updateCourseStatusById(int id, int status) throws InvocationTargetException, IllegalAccessException;
+    public void updateCourseStatusById(int id, int status);
 
 
 }

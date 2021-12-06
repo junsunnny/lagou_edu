@@ -28,4 +28,11 @@ public interface SectionService {
      * @param courseSection
      */
     public void updateSection(CourseSection courseSection);
+
+    /**
+     * 更改章节状态信息
+     * @param id
+     * @param status
+     */
+    public void updateSectionStatus(Integer id, Integer status);
 }

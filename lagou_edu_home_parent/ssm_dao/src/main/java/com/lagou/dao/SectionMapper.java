@@ -29,4 +29,10 @@ public interface SectionMapper {
      * @param courseSection
      */
     public void updateSection(CourseSection courseSection);
+
+    /**
+     * 修改章节状态信息
+     * @param courseSection
+     */
+    public void updateSectionStatus(CourseSection courseSection);
 }

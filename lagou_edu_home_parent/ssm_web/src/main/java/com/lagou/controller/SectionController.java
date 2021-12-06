@@ -55,4 +55,16 @@ public class SectionController {
             return new ResponseResult(true,200,"修改成功",null);
         }
     }
+
+    /**
+     * 修改课程状态
+     * @param id
+     * @param status
+     * @return
+     */
+    @RequestMapping("/updateSectionStatus")
+    public ResponseResult updateSectionStatus(Integer id, Integer status){
+        sectionService.updateSectionStatus(id,status);
+        return new ResponseResult(true,200,"修改成功",null);
+    }
 }

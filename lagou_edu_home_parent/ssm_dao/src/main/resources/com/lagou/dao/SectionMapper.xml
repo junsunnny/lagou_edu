@@ -80,4 +80,15 @@
             <if test="id != null and id != '' ">id=#{id}</if>
         </where>
     </update>
+
+    <!--更改章节状态信息-->
+    <update id="updateSectionStatus" parameterType="com.lagou.domain.CourseSection">
+        update
+            course_section
+        set
+            status = #{status},
+            update_time = #{updateTime}
+        where
+            id = #{id}
+    </update>
 </mapper>
