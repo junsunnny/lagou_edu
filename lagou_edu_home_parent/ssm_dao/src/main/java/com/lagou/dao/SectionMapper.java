@@ -23,4 +23,10 @@ public interface SectionMapper {
      * @param courseSection
      */
     public void saveSection(CourseSection courseSection);
+
+    /**
+     * 修改章节信息
+     * @param courseSection
+     */
+    public void updateSection(CourseSection courseSection);
 }

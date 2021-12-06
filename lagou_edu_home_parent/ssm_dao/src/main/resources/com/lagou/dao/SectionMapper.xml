@@ -58,4 +58,26 @@
             #{status}
             )
     </insert>
+
+    <!--修改章节信息-->
+    <update id="updateSection" parameterType="com.lagou.domain.CourseSection">
+        update course_section
+        <trim prefix="set" suffixOverrides=",">
+            <if test="sectionName != null and sectionName != ''">
+                section_name = #{sectionName},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                order_num = #{orderNum}
+            </if>
+        </trim>
+        <where>
+            <if test="id != null and id != '' ">id=#{id}</if>
+        </where>
+    </update>
 </mapper>

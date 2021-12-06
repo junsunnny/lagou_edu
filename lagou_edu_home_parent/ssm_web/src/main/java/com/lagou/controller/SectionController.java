@@ -47,7 +47,12 @@ public class SectionController {
      */
     @RequestMapping("/saveOrUpdateSection")
     public ResponseResult saveOrUpdateSection(@RequestBody CourseSection courseSection) {
-        sectionService.saveSection(courseSection);
-        return new ResponseResult(true,200,"新建成功",null);
+        if (courseSection.getId() == 0){
+            sectionService.saveSection(courseSection);
+            return new ResponseResult(true,200,"新建成功",null);
+        }else {
+            sectionService.updateSection(courseSection);
+            return new ResponseResult(true,200,"修改成功",null);
+        }
     }
 }

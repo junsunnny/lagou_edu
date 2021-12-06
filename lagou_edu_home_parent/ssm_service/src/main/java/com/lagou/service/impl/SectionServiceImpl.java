@@ -50,4 +50,17 @@ public class SectionServiceImpl implements SectionService {
         sectionMapper.saveSection(courseSection);
     }
 
+    /**
+     * 修改课程信息
+     *
+     * @param courseSection
+     */
+    @Override
+    public void updateSection(CourseSection courseSection) {
+        // 补全信息
+        courseSection.setUpdateTime(DateUtils.getCurrentTime());
+        // 调用业务层方法
+        sectionMapper.updateSection(courseSection);
+    }
+
 }

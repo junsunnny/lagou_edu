@@ -22,4 +22,10 @@ public interface SectionService {
      * @param courseSection
      */
     public void saveSection(CourseSection courseSection);
+
+    /**
+     * 修改课程信息
+     * @param courseSection
+     */
+    public void updateSection(CourseSection courseSection);
 }
