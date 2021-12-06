@@ -1,5 +1,6 @@
 package com.lagou.controller;
 
+import com.lagou.domain.Course;
 import com.lagou.domain.CourseSection;
 import com.lagou.domain.ResponseResult;
 import com.lagou.service.SectionService;
@@ -25,5 +26,11 @@ public class SectionController {
     public ResponseResult findSectionAndLessonByCourseId(Integer courseId){
         List<CourseSection> courseList = sectionService.findCourseAndLessonByCourseId(courseId);
         return new ResponseResult(true, 200, "课程查询成功", courseList);
+    }
+
+    @RequestMapping("/findCourseById")
+    public ResponseResult findCourseById(Integer courseId){
+        Course course = sectionService.findCourseByID(courseId);
+        return new ResponseResult(true,200,"查询成功", course);
     }
 }

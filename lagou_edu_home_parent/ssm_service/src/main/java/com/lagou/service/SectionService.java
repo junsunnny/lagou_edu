@@ -1,5 +1,6 @@
 package com.lagou.service;
 
+import com.lagou.domain.Course;
 import com.lagou.domain.CourseSection;
 
 import java.util.List;
@@ -10,4 +11,9 @@ public interface SectionService {
      * @param CourseId
      */
     public List<CourseSection> findCourseAndLessonByCourseId(Integer CourseId);
+
+    /**
+     * 根据课程id查询课程信息
+     */
+    public Course findCourseByID(Integer courseId);
 }

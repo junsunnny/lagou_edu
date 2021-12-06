@@ -44,8 +44,5 @@ public interface CourseService {
      */
     public void updateCourseStatusById(int id, int status) throws InvocationTargetException, IllegalAccessException;
 
-    /**
-     * 根据课程id查询课程信息
-     */
-    public Course findCourseByID(Integer id);
+
 }

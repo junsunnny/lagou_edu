@@ -103,15 +103,5 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.updateCourseStatus(course);
     }
 
-    /**
-     * 根据课程id查询课程信息
-     * @param id
-     * @return
-     */
-    @Override
-    public Course findCourseByID(Integer id) {
-        return courseMapper.findCourseById(id);
-    }
-
 
 }

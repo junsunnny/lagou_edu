@@ -28,4 +28,9 @@
             course_id = #{course_id}
         order by order_num
     </select>
+
+    <!--回显课程信息-->
+    <select id="findCourseById" parameterType="int" resultType="com.lagou.domain.Course">
+        select id,course_name from course where id = #{id};
+    </select>
 </mapper>

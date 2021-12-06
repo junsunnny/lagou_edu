@@ -46,9 +46,5 @@ public interface CourseMapper {
      */
     public void updateCourseStatus(Course course);
 
-    /**
-     * 查询课程信息
-     */
-    public Course findCourseById(Integer id);
 
 }

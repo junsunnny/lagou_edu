@@ -119,10 +119,6 @@ public class CourseController {
         return new ResponseResult(true,200,"success",null);
     }
 
-    @RequestMapping("/findCourseById ")
-    public ResponseResult findCourseById(Integer id){
-        Course course = courseService.findCourseByID(id);
-        return new ResponseResult(true,200,"查询成功", course);
-    }
+
 
 }
