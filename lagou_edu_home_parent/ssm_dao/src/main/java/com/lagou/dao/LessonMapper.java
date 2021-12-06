@@ -11,4 +11,6 @@ public interface LessonMapper {
      * @return
      */
     public List<CourseLesson> findLessonBYCourseId(Integer id);
+
+    public void saveLesson(CourseLesson courseLesson);
 }
