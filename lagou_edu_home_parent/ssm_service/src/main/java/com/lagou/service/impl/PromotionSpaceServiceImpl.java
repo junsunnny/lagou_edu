@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PromotionSpaceServiceImpl implements PromotionSpaceService {
@@ -32,6 +33,7 @@ public class PromotionSpaceServiceImpl implements PromotionSpaceService {
     @Override
     public void savePromotionSpace(PromotionSpace promotionSpace) {
         // 1.补全需要保存的数据
+        promotionSpace.setSpaceKey(UUID.randomUUID().toString());
         promotionSpace.setCreateTime(DateUtils.getCurrentTime());
         promotionSpace.setUpdateTime(DateUtils.getCurrentTime());
         promotionSpace.setIsDel(0);
