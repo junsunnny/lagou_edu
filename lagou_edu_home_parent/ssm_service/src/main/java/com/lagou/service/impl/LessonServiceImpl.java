@@ -27,4 +27,46 @@ public class LessonServiceImpl implements LessonService {
         // 2.调用dao层方法
         lessonMapper.saveLesson(courseLesson);
     }
+
+    /**
+     * 更新课程信息
+     *
+     * @param courseLesson
+     */
+    @Override
+    public void updateLesson(CourseLesson courseLesson) {
+        // 1.补全课时信息
+        courseLesson.setUpdateTime(DateUtils.getCurrentTime());
+
+        // 2.调用dao层
+        lessonMapper.updateLesson(courseLesson);
+    }
+
+    /**
+     * 回显课时信息
+     *
+     * @param id
+     */
+    @Override
+    public CourseLesson findLessonById(Integer id) {
+        return lessonMapper.findLessonById(id);
+    }
+
+    /**
+     * 修改课时状态
+     *
+     * @param id
+     * @param status
+     */
+    @Override
+    public void updateLessonStatus(Integer id, Integer status) {
+        // 填写信息
+        CourseLesson lesson = new CourseLesson();
+        lesson.setId(id);
+        lesson.setStatus(status);
+        lesson.setUpdateTime(DateUtils.getCurrentTime());
+
+        // 2.调用dao层
+        lessonMapper.updateLessonStatus(lesson);
+    }
 }
