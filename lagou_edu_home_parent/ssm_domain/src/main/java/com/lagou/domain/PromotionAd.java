@@ -20,6 +20,16 @@ public class PromotionAd {
   private int priority;
   private String img;
 
+  // 声明一方关系:promotionSpace
+  private PromotionSpace promotionSpace;
+
+  public PromotionSpace getPromotionSpace() {
+    return promotionSpace;
+  }
+
+  public void setPromotionSpace(PromotionSpace promotionSpace) {
+    this.promotionSpace = promotionSpace;
+  }
 
   public int getId() {
     return id;
