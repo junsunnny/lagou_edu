@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lagou.dao.RoleMapper">
+    <!--角色查询&条件查询&课程回显-->
+    <select id="findAllRole" parameterType="com.lagou.domain.Roles" resultType="com.lagou.domain.Roles">
+        select * from roles
+        <where>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="id != null and id !=  ''">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!--保存角色信息-->
+    <insert id="saveRole" parameterType="com.lagou.domain.Roles">
+        insert into
+            roles(code, name, description,
+            created_time, updated_time, created_by,
+            updated_by)
+        value(
+            #{code},
+            #{name},
+            #{description},
+            #{createdTime},
+            #{updatedTime},
+            #{createdBy},
+            #{updatedBy}
+        )
+    </insert>
+
+    <!--修改角色信息-->
+    <update id="updateRole" parameterType="com.lagou.domain.Roles">
+        update roles
+        <trim prefix="set" suffixOverrides=",">
+            <if test="code != null and  code != ''">
+                code = #{code},
+            </if>
+            <if test="name != null and  name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and  description != ''">
+                description = #{description},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="updatedBy != null and  updatedBy != ''">
+                updated_by = #{updatedBy}
+            </if>
+        </trim>
+        <where>
+            <if test="id != null and id != ''">id = #{id}</if>
+        </where>
+    </update>
+</mapper>

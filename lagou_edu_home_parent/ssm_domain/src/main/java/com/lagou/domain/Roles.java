@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Roles {
 
-  private long id;
+  private Integer id;
   private String code;
   private String name;
   private String description;
@@ -15,11 +15,11 @@ public class Roles {
   private String updatedBy;
 
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
