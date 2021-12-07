@@ -3,7 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lagou.dao.PromotionAdMapper">
-
+    <sql id="selectAllSql">
+        select * from promotion_ad
+    </sql>
+    <!--广告分页查询映射-->
     <resultMap id="promotionAdPage" type="com.lagou.domain.PromotionAd">
         <id column="id" property="id"/>
         <result column="name" property="name" />
@@ -24,9 +27,111 @@
                      select="com.lagou.dao.PromotionSpaceMapper.findPromotionSpaceById"
                      javaType="com.lagou.domain.PromotionSpace"/>
     </resultMap>
-
+    
     <!--分页查询-->
     <select id="findAllPromotionAdByPage" resultMap="promotionAdPage">
-        select * from promotion_ad
+        <include refid="selectAllSql"></include>
     </select>
+    
+    <!--新增广告信息-->
+    <insert id="savePromotionAd" parameterType="com.lagou.domain.PromotionAd">
+        insert into
+            promotion_ad(
+                name,
+                spaceId,
+                keyword,
+                htmlContent,
+                text,
+                link, 
+                startTime, 
+                endTime, 
+                createTime, 
+                updateTime, 
+                status, 
+                priority, 
+                img
+                ) 
+            value (
+                #{name},
+                #{spaceId},
+                #{keyword},
+                #{htmlContent},
+                #{text},
+                #{link},
+                #{startTime},
+                #{updateTime},
+                #{createTime},
+                #{updateTime},
+                #{status}, 
+                #{priority}, 
+                #{img}
+            )
+    </insert>
+
+    <!--回显广告信息-->
+    <select id="findPromotionAdById" parameterType="int" resultType="com.lagou.domain.PromotionAd">
+        <include refid="selectAllSql"></include> where id = #{id}
+    </select>
+
+    <!--更新广告信息-->
+    <update id="updatePromotionAd" parameterType="com.lagou.domain.PromotionAd">
+        update promotion_ad
+            <trim prefix="set" suffixOverrides=",">
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="spaceId != null and spaceId != ''">
+                    spaceId = #{spaceId},
+                </if>
+                <if test="keyword != null and keyword != ''">
+                    keyword = #{keyword},
+                </if>
+                <if test="htmlContent != null and htmlContent != ''">
+                    htmlContent = #{htmlContent},
+                </if>
+                <if test="text != null and text != ''">
+                    text = #{text},
+                </if>
+                <if test="link != null and link != ''">
+                    link = #{link},
+                </if>
+                <if test="startTime != null">
+                    startTime = #{startTime},
+                </if>
+                <if test="endTime != null">
+                    endTime = #{endTime},
+                </if>
+                <if test="createTime != null">
+                    createTime = #{createTime},
+                </if>
+                <if test="updateTime != null">
+                    updateTime = #{updateTime},
+                </if>
+                <if test="status != null and status != ''">
+                    status = #{status},
+                </if>
+                <if test="priority != null and priority != ''">
+                    priority = #{priority},
+                </if>
+                <if test="img != null and img != ''">
+                    img = #{img}
+                </if>
+            </trim>
+            <where>
+                <if test="id != null and id != ''">
+                    id = #{id}
+                </if>
+            </where>
+        </update>
+        <!--广告动态上下线-->
+        <update id="updatePromotionAdStatus" parameterType="com.lagou.domain.PromotionAd">
+            update
+                promotion_ad
+            set
+                status = #{status},
+                updateTime = #{updateTime}
+            where
+                id = #{id}
+        </update>
+    
 </mapper>
