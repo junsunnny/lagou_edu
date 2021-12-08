@@ -67,6 +67,7 @@
         delete from role_menu_relation where role_id = #{roleId}
     </delete>
 
+    <!--新建角色表和菜单表的关联关系-->
     <insert id="saveRoleMenuRelationByRoleId" parameterType="com.lagou.domain.RoleMenuRelation">
         insert into
             role_menu_relation(
@@ -85,4 +86,9 @@
                 #{updatedBy}
             )
     </insert>
+
+    <!--删除角色信息-->
+    <delete id="deleteRole" parameterType="int">
+        delete from roles where id = #{id}
+    </delete>
 </mapper>

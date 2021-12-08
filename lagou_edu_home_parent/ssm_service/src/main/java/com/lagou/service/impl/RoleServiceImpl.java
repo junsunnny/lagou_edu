@@ -111,4 +111,15 @@ public class RoleServiceImpl implements RoleService {
             roleMapper.saveRoleMenuRelationByRoleId(roleMenu);
         }
     }
+
+    /**
+     * 删除角色信息
+     * @param roleId
+     */
+    @Override
+    public void deleteRole(Integer roleId) {
+        // 根据RoleId清空中间表的关联关系
+        roleMapper.deleteRoleMenuRelationByRoleId(roleId);
+        roleMapper.deleteRole(roleId);
+    }
 }

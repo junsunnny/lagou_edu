@@ -44,4 +44,10 @@ public interface RoleMapper {
      * @param roleMenuRelation
      */
     public void saveRoleMenuRelationByRoleId(RoleMenuRelation roleMenuRelation);
+
+    /**
+     * 删除角色信息
+     * @param roleId
+     */
+    public void deleteRole(Integer roleId);
 }

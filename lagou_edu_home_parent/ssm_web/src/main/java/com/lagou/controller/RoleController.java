@@ -100,5 +100,16 @@ public class RoleController {
         return new ResponseResult(true,200,"角色分配菜单成功",null);
     }
 
+    /**
+     * 删除角色信息
+     * @param roleId
+     * @return
+     */
+    @RequestMapping("/deleteRole")
+    public ResponseResult deleteRole(Integer roleId) {
+        roleService.deleteRole(roleId);
+
+        return new ResponseResult(true,200,"删除成功",null);
+    }
 }
 

@@ -41,4 +41,10 @@ public interface RoleService {
      * @param roleMenuVO
      */
     public void roleContextMenu(RoleMenuVO roleMenuVO);
+
+    /**
+     * 删除角色信息
+     * @param roleId
+     */
+    public void deleteRole(Integer roleId);
 }
