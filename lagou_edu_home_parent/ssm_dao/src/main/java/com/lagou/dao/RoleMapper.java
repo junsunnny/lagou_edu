@@ -26,4 +26,9 @@ public interface RoleMapper {
      * @param roles
      */
     public void updateRole(Roles roles);
+
+    /**
+     * 根据角色信息查询关联菜单
+     */
+    public List<Integer> findMenuById(Integer roleId);
 }

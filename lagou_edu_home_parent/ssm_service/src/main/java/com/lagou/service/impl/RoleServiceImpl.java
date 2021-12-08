@@ -74,4 +74,14 @@ public class RoleServiceImpl implements RoleService {
             return null;
         }
     }
+
+    /**
+     * 根据角色信息查询关联菜单id
+     *
+     * @param roleId
+     */
+    @Override
+    public List<Integer> findMenuById(Integer roleId) {
+        return roleMapper.findMenuById(roleId);
+    }
 }

@@ -28,4 +28,9 @@ public interface RoleService {
      * 回显课程信息
      */
     public Roles finRoleById(Integer id);
+
+    /**
+     * 根据角色信息查询关联菜单id
+     */
+    public List<Integer> findMenuById(Integer roleId);
 }

@@ -1,6 +1,9 @@
 package com.lagou.domain;
 
 
+import java.util.Date;
+import java.util.List;
+
 public class Menu {
 
   private int id;
@@ -12,11 +15,21 @@ public class Menu {
   private int orderNum;
   private int shown;
   private int level;
-  private java.sql.Timestamp createdTime;
-  private java.sql.Timestamp updatedTime;
+  private Date createdTime;
+  private Date updatedTime;
   private String createdBy;
   private String updatedBy;
 
+  // 用来查询自连接的对象封装 里面是子级菜单
+  private List<Menu> subMenuList;
+
+  public List<Menu> getSubMenuList() {
+    return subMenuList;
+  }
+
+  public void setSubMenuList(List<Menu> subMenuList) {
+    this.subMenuList = subMenuList;
+  }
 
   public int getId() {
     return id;
@@ -99,20 +112,20 @@ public class Menu {
   }
 
 
-  public java.sql.Timestamp getCreatedTime() {
+  public Date getCreatedTime() {
     return createdTime;
   }
 
-  public void setCreatedTime(java.sql.Timestamp createdTime) {
+  public void setCreatedTime(Date createdTime) {
     this.createdTime = createdTime;
   }
 
 
-  public java.sql.Timestamp getUpdatedTime() {
+  public Date getUpdatedTime() {
     return updatedTime;
   }
 
-  public void setUpdatedTime(java.sql.Timestamp updatedTime) {
+  public void setUpdatedTime(Date updatedTime) {
     this.updatedTime = updatedTime;
   }
 

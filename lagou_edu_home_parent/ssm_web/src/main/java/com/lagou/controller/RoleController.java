@@ -1,7 +1,9 @@
 package com.lagou.controller;
 
+import com.lagou.domain.Menu;
 import com.lagou.domain.ResponseResult;
 import com.lagou.domain.Roles;
+import com.lagou.service.MenuService;
 import com.lagou.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @RequestMapping("/role")
 public class RoleController {
+
+    @Autowired
+    private MenuService menuService;
     @Autowired
     private RoleService roleService;
+
 
     /**
      * 查询所有角色信息
@@ -52,6 +59,33 @@ public class RoleController {
     public ResponseResult findRoleById(Integer id) {
         Roles role = roleService.finRoleById(id);
         return new ResponseResult(true, 200, "回显角色信息成功", role);
+    }
+
+    /**
+     * 查询所有父子菜单信息
+     * @return
+     */
+    @RequestMapping("/findAllMenu")
+    public ResponseResult findNodeMenuList() {
+        // -1 表示父级菜单的pid
+        List<Menu> menuList = menuService.findMenuListByPid(-1);
+
+        // 响应数据和接口文档不一样 进行封装改造
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("parentMenuList",menuList);
+
+        return new ResponseResult(true, 200, "菜单响应成功", map);
+    }
+
+    /**
+     * 根据角色信息查询关联菜单
+     * @param roleId
+     * @return
+     */
+    @RequestMapping("/findMenuByRoleId")
+    public ResponseResult findMenuById(Integer roleId) {
+        List<Integer> menuById = roleService.findMenuById(roleId);
+        return new ResponseResult(true,200,"菜单序号查询成功",menuById);
     }
 
 }
