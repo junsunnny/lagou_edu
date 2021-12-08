@@ -1,5 +1,6 @@
 package com.lagou.dao;
 
+import com.lagou.domain.RoleMenuRelation;
 import com.lagou.domain.Roles;
 
 import java.util.List;
@@ -31,4 +32,16 @@ public interface RoleMapper {
      * 根据角色信息查询关联菜单
      */
     public List<Integer> findMenuById(Integer roleId);
+
+    /**
+     * 清空角色表和菜单表对应的关联关系
+     * @param roleId
+     */
+    public void deleteRoleMenuRelationByRoleId(Integer roleId);
+
+    /**
+     * 新增角色表和菜单表对应的关联关系
+     * @param roleMenuRelation
+     */
+    public void saveRoleMenuRelationByRoleId(RoleMenuRelation roleMenuRelation);
 }

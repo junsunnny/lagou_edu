@@ -2,6 +2,7 @@ package com.lagou.controller;
 
 import com.lagou.domain.Menu;
 import com.lagou.domain.ResponseResult;
+import com.lagou.domain.RoleMenuVO;
 import com.lagou.domain.Roles;
 import com.lagou.service.MenuService;
 import com.lagou.service.RoleService;
@@ -86,6 +87,17 @@ public class RoleController {
     public ResponseResult findMenuById(Integer roleId) {
         List<Integer> menuById = roleService.findMenuById(roleId);
         return new ResponseResult(true,200,"菜单序号查询成功",menuById);
+    }
+
+    /**
+     * 分配角色信息
+     * @param roleMenuVO
+     * @return
+     */
+    @RequestMapping("/roleContextMenu")
+    public ResponseResult roleContextMenu(@RequestBody RoleMenuVO roleMenuVO) {
+        roleService.roleContextMenu(roleMenuVO);
+        return new ResponseResult(true,200,"角色分配菜单成功",null);
     }
 
 }

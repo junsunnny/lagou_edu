@@ -57,9 +57,32 @@
             <if test="id != null and id != ''">id = #{id}</if>
         </where>
     </update>
-
+    <!--查询角色表和菜单表对应的关联关系并返回菜单id-->
     <select id="findMenuById" parameterType="int" resultType="int">
         select m.id from  roles r inner join role_menu_relation rmr on r.id = rmr.role_id
         inner join menu m on rmr.menu_id = m.id where r.id = #{roloId}
     </select>
+    <!--清空角色表和菜单表对应的关联关系-->
+    <delete id="deleteRoleMenuRelationByRoleId" parameterType="int">
+        delete from role_menu_relation where role_id = #{roleId}
+    </delete>
+
+    <insert id="saveRoleMenuRelationByRoleId" parameterType="com.lagou.domain.RoleMenuRelation">
+        insert into
+            role_menu_relation(
+                menu_id,
+                role_id,
+                created_time,
+                updated_time,
+                created_by,
+                updated_by)
+            value(
+                #{menuId},
+                #{roleId},
+                #{createdTime},
+                #{updatedTime},
+                #{createdBy},
+                #{updatedBy}
+            )
+    </insert>
 </mapper>

@@ -1,6 +1,8 @@
 package com.lagou.service.impl;
 
 import com.lagou.dao.RoleMapper;
+import com.lagou.domain.RoleMenuRelation;
+import com.lagou.domain.RoleMenuVO;
 import com.lagou.domain.Roles;
 import com.lagou.service.RoleService;
 import com.lagou.utils.DateUtils;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Consumer;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -83,5 +87,28 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Integer> findMenuById(Integer roleId) {
         return roleMapper.findMenuById(roleId);
+    }
+
+    /**
+     * 为角色分配菜单
+     *
+     * @param roleMenuVO
+     */
+    @Override
+    public void roleContextMenu(RoleMenuVO roleMenuVO) {
+        // 1.清空中间表的关联关系
+        roleMapper.deleteRoleMenuRelationByRoleId(roleMenuVO.getRoleId());
+
+        // 2.为角色分配菜单
+        RoleMenuRelation roleMenu = new RoleMenuRelation();
+        roleMenu.setRoleId(roleMenuVO.getRoleId());
+        roleMenu.setCreatedBy("system");
+        roleMenu.setUpdatedBy("syetem");
+        for (Integer menuId : roleMenuVO.getMenuIdList()) {
+            roleMenu.setCreatedTime(DateUtils.getCurrentTime());
+            roleMenu.setUpdatedTime(DateUtils.getCurrentTime());
+            roleMenu.setMenuId(menuId);
+            roleMapper.saveRoleMenuRelationByRoleId(roleMenu);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.lagou.service;
 
+import com.lagou.domain.RoleMenuRelation;
+import com.lagou.domain.RoleMenuVO;
 import com.lagou.domain.Roles;
 
 import java.util.List;
@@ -33,4 +35,10 @@ public interface RoleService {
      * 根据角色信息查询关联菜单id
      */
     public List<Integer> findMenuById(Integer roleId);
+
+    /**
+     * 为角色分配菜单
+     * @param roleMenuVO
+     */
+    public void roleContextMenu(RoleMenuVO roleMenuVO);
 }
