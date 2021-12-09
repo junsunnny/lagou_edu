@@ -1,6 +1,9 @@
 package com.lagou.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +18,11 @@ public class Menu {
   private int orderNum;
   private int shown;
   private int level;
+  // @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+  // 这个注解用来解析JSON数据中的日期字符串，会序列化返回数据
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
   private Date createdTime;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
   private Date updatedTime;
   private String createdBy;
   private String updatedBy;

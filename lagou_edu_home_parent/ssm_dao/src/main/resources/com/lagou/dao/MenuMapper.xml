@@ -29,6 +29,96 @@
         select * from menu where parent_id = #{pid}
     </select>
 
-    <!---->
+    <!--查询所有菜单信息&回显父级菜单&回显单个菜单信息-->
+    <select id="findAllMenu" resultType="com.lagou.domain.Menu">
+        select * from menu
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and parent_id = #{parentId}
+            </if>
+        </where>
+    </select>
 
+    <!--保存账单信息-->
+    <insert id="saveMenu" parameterType="com.lagou.domain.Menu">
+        insert into
+            menu(
+                parent_id,
+                href,
+                icon,
+                name,
+                description,
+                order_num,
+                shown,
+                level,
+                created_time,
+                updated_time,
+                created_by,
+                updated_by)
+        VALUE(
+                #{parentId},
+                #{href},
+                #{icon},
+                #{name},
+                #{description},
+                #{orderNum},
+                #{shown},
+                #{level},
+                #{createdTime},
+                #{updatedTime},
+                #{createdBy},
+                #{updatedBy}
+            )
+    </insert>
+
+    <!--修改菜单信息-->
+    <update id="updateMenu" parameterType="com.lagou.domain.Menu">
+        update menu
+        <trim prefix="set" suffixOverrides=",">
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId},
+            </if>
+            <if test="href != null and href != ''">
+                href = #{href},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                order_num = #{orderNum},
+            </if>
+            <if test="shown != null and shown != ''">
+                shown = #{shown},
+            </if>
+            <if test="level != null and level != ''">
+                level = #{level},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                 updated_time = #{updatedTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by = #{updatedBy}
+            </if>
+        </trim>
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+        </where>
+    </update>
 </mapper>

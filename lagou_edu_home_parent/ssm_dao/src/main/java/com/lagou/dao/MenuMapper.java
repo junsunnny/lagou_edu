@@ -12,4 +12,20 @@ public interface MenuMapper {
      */
     public List<Menu> findMenuListByPid(Integer id);
 
+    /**
+     * 查询所有菜单列表
+     */
+    public List<Menu> findAllMenu(Menu menu);
+
+    /**
+     * 保存菜单信息
+     * @param menu
+     */
+    void saveMenu(Menu menu);
+
+    /**
+     * 修改菜单信息
+     * @param menu
+     */
+    void updateMenu(Menu menu);
 }
